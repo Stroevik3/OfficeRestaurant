@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	OrderCreatedTopic string = "order_created"
+	OrderCreatedTopic string = "ordercreated"
 )
 
 func IniProducer(brokerAddr string) sarama.SyncProducer {

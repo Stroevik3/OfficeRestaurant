@@ -22,8 +22,8 @@ import (
 
 type server struct {
 	customer.UnimplementedOfficeServiceServer
-	customer.UnimplementedOrderServiceServer
 	customer.UnimplementedUserServiceServer
+	customer.UnimplementedOrderServiceServer
 	mux        *runtime.ServeMux
 	logger     *logrus.Logger
 	store      store.Store
@@ -72,7 +72,10 @@ func (s *server) CreateOffice(ctx context.Context, req *customer.CreateOfficeReq
 
 func (s *server) GetOfficeList(ctx context.Context, req *customer.GetOfficeListRequest) (*customer.GetOfficeListResponse, error) {
 	s.logger.Debugln("GetOfficeList")
-	offices := s.store.Office().GetList()
+	offices, err := s.store.Office().GetList()
+	if err != nil {
+		return nil, status.Error(codes.Aborted, err.Error())
+	}
 	retList := make([]*customer.Office, 0, len(offices))
 	for _, val := range offices {
 		retList = append(retList, &customer.Office{
@@ -115,7 +118,10 @@ func (s *server) CreateUser(ctx context.Context, req *customer.CreateUserRequest
 
 func (s *server) GetUserList(ctx context.Context, req *customer.GetUserListRequest) (*customer.GetUserListResponse, error) {
 	s.logger.Debugln("GetUserList")
-	users := s.store.User().GetList()
+	users, err := s.store.User().GetList()
+	if err != nil {
+		return nil, status.Error(codes.Aborted, err.Error())
+	}
 	retList := make([]*customer.User, 0, len(users))
 	for _, val := range users {
 		retList = append(retList, &customer.User{

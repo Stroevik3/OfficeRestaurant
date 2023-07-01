@@ -28,7 +28,7 @@ func (r *OfficeRepository) Add(o *model.Office) error {
 	return nil
 }
 
-func (r *OfficeRepository) GetList() []*model.Office {
+func (r *OfficeRepository) GetList() ([]*model.Office, error) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 	newOffices := make([]*model.Office, 0, len(r.offices))
@@ -40,7 +40,7 @@ func (r *OfficeRepository) GetList() []*model.Office {
 			CreatedAt: val.CreatedAt,
 		})
 	}
-	return newOffices
+	return newOffices, nil
 }
 
 func (r *OfficeRepository) Find(id uuid.UUID) (*model.Office, error) {

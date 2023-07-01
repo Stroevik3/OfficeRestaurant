@@ -7,6 +7,7 @@ require (
 	github.com/Shopify/sarama v1.38.1
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
+	github.com/lib/pq v1.10.9
 	github.com/sirupsen/logrus v1.9.2
 	github.com/stretchr/testify v1.8.1
 	gitlab.com/mediasoft-internship/final-task/contracts v0.3.0

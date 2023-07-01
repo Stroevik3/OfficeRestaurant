@@ -16,7 +16,7 @@ func NewConfig() *Config {
 		GrpcAddr:          ":8081",
 		GrpcClAddr:        ":8081",
 		LogLevel:          "debug",
-		BrokerAddr:        "9096",
+		BrokerAddr:        "9092",
 		OrderCreatedTopic: "order_created",
 	}
 }

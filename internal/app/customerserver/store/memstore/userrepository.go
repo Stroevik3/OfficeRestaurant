@@ -27,7 +27,7 @@ func (r *UserRepository) Add(o *model.User) error {
 	return nil
 }
 
-func (r *UserRepository) GetList() []*model.User {
+func (r *UserRepository) GetList() ([]*model.User, error) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 	newUsers := make([]*model.User, 0, len(r.users))
@@ -44,5 +44,5 @@ func (r *UserRepository) GetList() []*model.User {
 			CreatedAt: val.CreatedAt,
 		})
 	}
-	return newUsers
+	return newUsers, nil
 }

@@ -43,7 +43,7 @@ func TestUserRep_GetList(t *testing.T) {
 				u := model.TestUser(t, of)
 				st.User().Add(u)
 			}
-			resp := st.User().GetList()
+			resp, _ := st.User().GetList()
 			assert.Equal(t, tc.CountRow, len(resp))
 		})
 	}

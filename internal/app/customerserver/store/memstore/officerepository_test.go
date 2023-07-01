@@ -40,7 +40,7 @@ func TestOfficeRep_GetList(t *testing.T) {
 			for i := 1; i <= tc.CountRow; i++ {
 				st.Office().Add(of)
 			}
-			resp := st.Office().GetList()
+			resp, _ := st.Office().GetList()
 			assert.Equal(t, tc.CountRow, len(resp))
 		})
 	}
